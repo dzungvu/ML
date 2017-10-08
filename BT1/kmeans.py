@@ -2,11 +2,12 @@
 # Vu The Dung 
 # MSSV: 14520205
 # Day update: 10/04/2017
-import numpy as np
-import matplotlib.pyplot as plt
 import random
 
+import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.cluster import KMeans
+
 np.random.seed(11)
 
 means = [[2, 2], [8, 3]]
@@ -20,8 +21,12 @@ K = 2
 
 original_label = np.asarray([0]*N + [1]*N)
 
-y_pred = KMeans(n_clusters=2, random_state=0).fit_predict(X)
+cluster = KMeans(n_clusters=2, random_state=0)
+result = cluster.fit_predict(X)
 
-plt.scatter(X[:, 0], X[:, 1], c=y_pred)
+centers = cluster.cluster_centers_
+
+plt.scatter(X[:, 0], X[:, 1], c=result)
+plt.scatter(centers[:, 0], centers[:, 1])
 plt.title("Kmeans")
 plt.show()
