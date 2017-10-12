@@ -18,13 +18,18 @@ data = np.load(savePath)
 array = []
 count = 0
 
-array = []
 
-for lbp in data:
-    hist, _ = np.histogram(lbp, normed=True, bins=n_points + 2, range=(0, n_points + 2))
-    array.append(hist)
-    count += 1
-print array
+
+dataPath = 'Z:\Subjects\ML\ML\BT3\Data\lfw_home\lfw_funneled'
+listDir = next(os.walk(dataPath))[1]
+
+for itemFolder in listDir:
+    path = dataPath + '\\' + itemFolder
+    for fileName in glob.glob(os.path.join(path, '*.npy')):
+        print (fileName)
+        lbp = np.load(fileName)
+        hist, _ = np.histogram(lbp, normed=True, bins=n_points + 2, range=(0, n_points + 2))
+        array.append(hist)
 
 reduced_data = PCA(n_components=2).fit_transform(array)
 kmeans = KMeans(init='k-means++', n_clusters=10, n_init=10)
