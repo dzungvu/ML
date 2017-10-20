@@ -29,7 +29,7 @@ label = np.reshape(ward.labels_, data.shape)
 
 plt.figure(figsize=(5, 5))
 plt.imshow(data, cmap=plt.cm.gray)
-for l in range(n_clusters):
+for l in range(n_digits):
     plt.contour(label == l, contours=1,
                 colors=[plt.cm.spectral(l / float(n_clusters)), ])
 plt.xticks(())

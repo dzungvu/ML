@@ -12,16 +12,15 @@ import glob
 import matplotlib.pyplot as plt
 
 dataPath = 'Z:\Subjects\ML\ML\BT4\jpg'
-descriptors = np.array([])
+hog = cv2.HOGDescriptor()
+hogs = []
 for fileName in glob.glob(os.path.join(dataPath, '*.jpg')):
-    pic = cv2.imread(fileName)
-    kp, des = cv2.SIFT().detectAndCompute(pic, None)
-    descriptors = np.append(descriptors, des)
+    im = cv2.imread(fileName)
+    image_gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    h = hog.compute(image_gray)
+    hogs.append(h)
 
-desc = np.reshape(descriptors, (len(descriptors)/128, 128))
-desc = np.float32(desc)
-
-reduced_data = PCA(n_components=2).fit_transform(desc)
+reduced_data = PCA(n_components=2).fit_transform(hogs)
 kmeans = KMeans(init='k-means++', n_clusters=10, n_init=10)
 kmeans.fit_predict(reduced_data)
 labels = kmeans.labels_
