@@ -1,7 +1,7 @@
 # SpectralClustering WrittenDigits
 # Vu The Dung 
 # MSSV: 14520205
-# Day update: 10/04/2017
+# Day update: 20/10/2017
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +23,7 @@ sample_size = 300
 reduced_data = PCA(n_components=2).fit_transform(data)
 graph = cosine_similarity(digits.data)
 algo = SpectralClustering(n_clusters=n_digits)
-algo.fit(reduced_data)
+algo.fit(graph)
 
 convertArray = PCA(n_components=2)
 dataArray = convertArray.fit_transform(digits.data)

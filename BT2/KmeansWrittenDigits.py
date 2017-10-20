@@ -1,11 +1,11 @@
 # Kmeans clustering written digits
 # Vu The Dung 
 # MSSV: 14520205
-# Day update: 08/10/2017
+# Day update: 20/10/2017
 
 import numpy as np
 import matplotlib.pyplot as plt
-import rando`m
+import random
 import pandas as pd
 
 from sklearn.cluster import KMeans
